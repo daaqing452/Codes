@@ -1,0 +1,12 @@
+f(l, r)
+{
+	m = (l + r) / 2.0
+	return ( f(l) + f(m) * 4 + f(r) ) * (r - l) / 6
+}
+
+Simpson(l, r)
+{
+	m = (l + r) / 2.0
+	如果 f(l, m) + f(m, r) 和 f(l, r) 相当接近, 返回 f(l, m) + f(m, r)
+	否则返回 Simpson(l, m) + Simpson(m, r)
+}
