@@ -1,12 +1,9 @@
-int	hungary(int u)
-{
+int hungary(int u) {
 	X[u] = 1;
 	for (int i = 1; i <= N; ++ i)
-	if(!Y[i] && lx[u] + ly[i] == maq[u][i])
-	{
+	if(!Y[i] && lx[u] + ly[i] == maq[u][i]) {
 		Y[i] = 1;
-		if(linky[i] == 0 || hungary(linky[i]))
-		{
+		if(linky[i] == 0 || hungary(linky[i])) {
 			linky[i] = u;
 			return 1;
 		}
@@ -14,8 +11,7 @@ int	hungary(int u)
 	return 0;
 }
 
-void	KM()
-{
+void KM() {
 	memset(linky, 0, sizeof(linky));
 	memset(lx, 0, sizeof(lx));
 //	memset(lx, 60, sizeof(lx));
@@ -26,8 +22,7 @@ void	KM()
 //		lx[i] = min(lx[i], maq[i][j]);
 
 	for (int k = 1; k <= N; ++ k)
-	for (; ; )
-	{
+	for (; ; ) {
 		memset(X, 0, sizeof(X));
 		memset(Y, 0, sizeof(Y));
 		if (hungary(k)) break;
@@ -39,8 +34,7 @@ void	KM()
 			d = min(d, lx[i] + ly[j] - maq[i][j]);
 //			d = max(d, lx[i] + ly[j] - maq[i][j]);
 
-		for (int i = 1; i <= N; ++ i)
-		{
+		for (int i = 1; i <= N; ++ i) {
 			if (X[i]) lx[i] -= d;
 			if (Y[i]) ly[i] += d;
 		}

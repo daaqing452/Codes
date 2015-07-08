@@ -1,7 +1,5 @@
-inline void exGCD(int a, int b, int c)
-{
-	if (b == 0)
-	{
+inline void exGCD(int a, int b, int c) {
+	if (b == 0) {
 		x = c / a; y = 0;
 		return;
 	}

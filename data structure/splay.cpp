@@ -1,6 +1,6 @@
 #define SPL a
 struct SPLTree {
-	int	l, r, p, s, key;
+	int l, r, p, s, key;
 };
 inline void renew(int x);
 inline void updata(int x);
