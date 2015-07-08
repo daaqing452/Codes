@@ -1,27 +1,17 @@
-/* splay */
 #define SPL a
-struct	SPLTree
-{
+struct SPLTree {
 	int	l, r, p, s, key;
 };
-inline	void	renew(int x);
-inline	void	updata(int x);
-inline	void	zig(int x);
-inline	void	zag(int x);
-inline	void	splay(int x);
-inline	void	cut(int x);
-inline	int	join(int p, int q);
-/* splay */
+inline void renew(int x);
+inline void updata(int x);
+inline void zig(int x);
+inline void zag(int x);
+inline void splay(int x);
+inline void cut(int x);
+inline int join(int p, int q);
 
-
-
-
-
-//--------------------splay--------------------
-
-inline	void	zig(int x)
-{
-	int	y = SPL[x].p, z = SPL[y].p, w = SPL[x].l;
+inline void zig(int x) {
+	int y = SPL[x].p, z = SPL[y].p, w = SPL[x].l;
 	SPL[w].p = y; SPL[y].r = w;
 	SPL[y].p = x; SPL[x].l = y;
 	SPL[x].p = z;
@@ -30,9 +20,8 @@ inline	void	zig(int x)
 //	renew(y); renew(x);
 }
 
-inline	void	zag(int x)
-{
-	int	y = SPL[x].p, z = SPL[y].p, w = SPL[x].r;
+inline void zag(int x) {
+	int y = SPL[x].p, z = SPL[y].p, w = SPL[x].r;
 	SPL[w].p = y; SPL[y].l = w;
 	SPL[y].p = x; SPL[x].r = y;
 	SPL[x].p = z;
@@ -41,18 +30,15 @@ inline	void	zag(int x)
 //	renew(y); renew(x);
 }
 
-inline	void	splay(int x)
-{
-/*	int	la = 0;
-	for (int i = x; ; i = SPL[i].p)
-	{
+inline void splay(int x) {
+/*	int la = 0;
+	for (int i = x; ; i = SPL[i].p) {
 		que[++ la] = i;
 		if (!SPL[i].p) break;
 	}
 	for (int i = la; i; -- i) updata(que[i]);	*/
 	
-	for (; SPL[x].p; )
-	{
+	for (; SPL[x].p; ) {
 		int	y = SPL[x].p, z = SPL[y].p;
 		if (!z)
 			if (x == SPL[y].l) zag(x); else zig(x);
@@ -64,8 +50,7 @@ inline	void	splay(int x)
 	}
 }
 
-inline	void	cut(int x)
-{
+inline void cut(int x) {
 	if (!x) return;
 	int	y = SPL[x].p;
 	if (x == SPL[y].l) SPL[y].l = 0; else SPL[y].r = 0;
@@ -73,8 +58,7 @@ inline	void	cut(int x)
 //	renew(y);
 }
 
-inline	int	join(int p, int q)
-{
+inline int join(int p, int q) {
 	if (!p) return q;
 	if (!q) return p;
 	int	x = p;
@@ -84,5 +68,3 @@ inline	int	join(int p, int q)
 //	renew(x);
 	return x;
 }
-
-//--------------------splay--------------------

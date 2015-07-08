@@ -1,6 +1,6 @@
 inline void addedge(int u, int v, int c);
-inline int	build();
-inline void	dinic(int u);
+inline int build();
+inline void dinic(int u);
 
 
 for (off = t; ; )
