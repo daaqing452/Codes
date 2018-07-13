@@ -34,7 +34,7 @@
 	.source {
 		font-size: 10px;
 		color: #777777;
-		margin-bottom: 10px;
+		margin-bottom: 5px;
 	}
 
 	.confs_div {
@@ -58,12 +58,12 @@
 		background: #000000;
 	}
 	.tag {
-		font-size: 15px;
+		font-size: 10px;
 		color: #ffffff;
-		float: right;
+		/*float: right;*/
 		background-color: #000000;
-		padding: 0px 2px 0px 2px;
-		/*margin-top: 3px;*/
+		padding: 1px 2px 1px 2px;
+		margin-right: 4px;
 		/*width: 80px;*/
 		text-align: center;
 	}
@@ -75,7 +75,7 @@
 
 <body>
 <h1> Read Paper </h1>
-<div class="confs_div" style="display:none">
+<!--<div class="confs_div" style="display:none">
 	<input type="checkbox" id="conf_A" checked="checked" onchange="conf_onchange()"> A </input> &nbsp; &nbsp; &nbsp;
 	<input type="checkbox" id="conf_B" checked="checked" onchange="conf_onchange()"> B </input> &nbsp; &nbsp; &nbsp;
 	<input type="checkbox" id="conf_C" onchange="conf_onchange()"> C </input>
@@ -83,8 +83,8 @@
 	<input type="checkbox" id="conf_HCI" checked="checked" onchange="conf_onchange()"> HCI </input> &nbsp; &nbsp; &nbsp;
 	<input type="checkbox" id="conf_journal" onchange="conf_onchange()"> Journal </input>
 	<table rules="none" class="confs" id="confs"> </table>
-</div>
-<div id="tags"></div><br/>
+</div>-->
+<div id="tags"></div><br/><br/>
 <select id="conf_select">
 	<option value='[]'></option>
 	<option value='["CHI"]'>CHI</option>
@@ -94,8 +94,7 @@
 	<option value='["MobileHCI"]'>MobileHCI</option>
 </select>
 <input id="conf_year_start" style="width:30px" value="1900" type="text"/>-<input id="conf_year_end" style="width:30px" value="2018" type="text"/>
-<button onclick="onclick_conf_select()">Search</button>
-<br/><br/>
+<button onclick="onclick_conf_select()">Search</button><br/><br/>
 <table rules="rows" class="papers" id="papers"> </table>
 </body>
 </html>
@@ -134,18 +133,18 @@
 					<div class="source">\
 						<span> ' + paper["conf"] + ' </span>\
 						<span> ' + paper["year"] + ' </span>';
-			if (paper['website']) s += '\
-				<br/><a style="color:#007f00" href=' + paper['website'] + '>' + paper['website'] + '</a>';
-			s += '\
-					</div>\
-					<span class="keyword"> ' + paper["keyword"] + ' </span>\
-				</td>';
-			s += '<td valign="top">';
+			if (paper['website']) s += '<br/><a style="color:#007f00" href=' + paper['website'] + '>' + paper['website'] + '</a>';
+			s += '</div>';
+			s += '<span class="keyword"> ' + paper["keyword"] + ' </span><br/>';
+			s += '<div style="margin-top:4px">';
 			for (var i in paper['tag']) {
 				var tag = paper['tag'][i];
-				s += '<span class="tag" style="background-color:' + tag_color[tag] + ';">' + tag + '</span><br/>';
+				s += '<span class="tag" style="background-color:' + tag_color[tag] + ';">' + tag + '</span>';
 			}
-			s += '<td>';
+			s += '</div></td>';
+			s += '<td width="200px" style="text-align:center; padding-top:10px; padding-bottom:5px">';
+			if (paper['image']) s += '<img src="image/' + filename + '.jpg" />';
+			s += '</td>';
 			tr.innerHTML = s;
 			table.appendChild(tr);
 		}
@@ -188,7 +187,7 @@
 	}
 
 	var tag_color = {
-		"": 				"#808000",
+		//"": 				"#808000",
 		"CV/Graphics": 		"#ff80aa",
 		"Eye/Gaze": 		"#800000",
 		"Gesture": 			"#008000",
@@ -467,14 +466,6 @@
 			"year": 2012,
 			"keyword": "split keyboard, finger-release, 26~39 WPM",
 			"tag": ["Text Entry"],
-		},
-		{
-			"title": "Pursuits: Spontaneous Interaction with Displays based on Smooth Pursuit Eye Movement and Moving Targets",
-			"author": "M Vidal, A Bulling, H Gellersen",
-			"conf": "UbiComp",
-			"year": 2013,
-			"keyword": "eyes perform same trajectory as object, no calibrate, correlation/similarity, accuracy↓ objects↑, application",
-			"tag": ["Eye/Gaze"],
 		},
 		{
 			"title": "Pursuit Calibration: Making Gaze Calibration Less Tedious and More Flexible",
@@ -862,7 +853,7 @@
 			"author": "Y Monnai, K Hasegawa, M Fujiwara, K Yoshino, S Inoue, H Shinoda",
 			"conf": "UIST",
 			"year": 2014,
-			"keyword": "ultrasonic, touch",
+			"keyword": "ultrasonic, touch surface",
 			"tag": ["Haptic"],
 		},
 		{
@@ -1191,6 +1182,15 @@
 			"tag": [],
 		},
 		{
+			"title": "Rico: A Mobile App Dataset for Building Data-Driven Design Applications",
+			"author": "B Deka, Z Huang, C Franzen, J Hibschman, D Afergan, Y Li, J Nichols, R Kumar",
+			"conf": "UIST",
+			"year": 2017,
+			"website": "http://interactionmining.org/rico",
+			"keyword": "dataset: design search & UI layout generation & UI code generation & user interaction modeling & user perception prediction, 9.7k Android apps & 72k unique UI screen",
+			"tag": [],
+		},
+		{
 			"title": "Multi-Device Storyboards for Cinematic Narratives in VR",
 			"author": "R Henrikson, B Araujo, F Chevalier, K Singh, R Balakrishnan",
 			"conf": "UIST",
@@ -1204,7 +1204,7 @@
 			"conf": "UIST",
 			"year": 2016,
 			"keyword": "use nature language to search clothes",
-			"tag": [""],
+			"tag": [],
 		},
 		{
 			"title": "SketchingWithHands: 3D Sketching Handheld Products with First-Person Hand Posture",
@@ -1587,7 +1587,7 @@
 			"author": "P Bader, N Henze, N Broy, K Wolf",
 			"conf": "CHI",
 			"year": 2016,
-			"keyword": "sperate overlapped content on two depths of a diagonal mirror with consistent cues",
+			"keyword": "seperate overlapped content on two depths of a diagonal mirror with consistent cues",
 			"tag": ["VR/AR"],
 		},
 		{
@@ -3995,7 +3995,7 @@
 			"author": "D Wenig, J Schoning, A Olwal, M Oben, R Malaka",
 			"conf": "CHI",
 			"year": 2017,
-			"keyword": "add 45° transparent display over smartwatch, extended display reflect smartwatch display for mid-air, see-through AR, hand & head tracking to show different perspective",
+			"keyword": "add 45° transparent mirror/glass over smartwatch, extended display reflect smartwatch display for mid-air, see-through AR, hand & head tracking to show different perspective",
 			"tag": ["VR/AR"],
 		},
 		{
@@ -4275,6 +4275,7 @@
 			"author": "D Masson, A Goguey, S Malacria, G Casiez",
 			"conf": "UIST",
 			"year": 2017,
+			"image": true,
 			"keyword": "piezo-based (piezoelectric) vibration sensor attach to each finger, low-cost & low-latency, accuracy: 98.2% for keyboard / 99.7% for touchpad / 94.7% for both",
 			"tag": ["Sensing", "Touchscreen"],
 		},
@@ -4431,6 +4432,23 @@
 			"tag": ["Gesture"],
 		},
 		{
+			"title": "Pursuits: Spontaneous Interaction with Displays based on Smooth Pursuit Eye Movement and Moving Targets",
+			"author": "M Vidal, A Bulling, H Gellersen",
+			"conf": "UbiComp",
+			"year": 2013,
+			"keyword": "eyes perform same trajectory as object, no calibrate, correlation/similarity, accuracy↓ objects↑, application",
+			"tag": ["Eye/Gaze"],
+		},
+		{
+			"title": "MatchPoint: Spontaneous Spatial Coupling of Body Movement for Touchless Pointing",
+			"author": "C Clarke, H Gellersen",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "match object motion to remote display, synchronise, camera capture hand/object motion, move time <3s, application",
+			"tag": ["CV/Graphics"],
+		},
+		{
 			"title": "TapSongs: Tapping Rhythm-Based Passwords on a Single Binary Sensor",
 			"author": "J Wobbrock",
 			"conf": "UIST",
@@ -4579,8 +4597,362 @@
 			"author": "X Zhang, Y Sugano, A Bulling",
 			"conf": "UIST",
 			"year": 2017,
+			"image": true,
 			"keyword": "without label, gaze estimate and face feature extract using CNN ->cluster inaccurate gaze direction and label -> SVM using CNN feature to detect eye contact, 70% ~ 90% accuracy",
 			"tag": ["Eye/Gaze", "CV/Graphics"],
+		},
+		{
+			"title": "HapThimble: A Wearable Haptic Device towards Usable Virtual Touch Screen",
+			"author": "H Kim, M Kim, W Lee",
+			"conf": "CHI",
+			"year": 2016,
+			"keyword": "tactile & pseudoforce & vibrotactile, mimic physical button depth curve, 90% mimic success rate, tactile/force > bare hand in click & drag task",
+			"tag": ["Haptic", "VR/AR"],
+		},
+		{
+			"title": "HapticClench: Investigating Squeeze Sensations using Memory Alloys",
+			"author": "A Gupta, A Irudayaraj, R Balakrishnan",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "wrist band, squeeze sense by shape memory alloy (SMA), psychophysics evaluation",
+			"tag": ["Haptic"],
+		},
+		{
+			"title": "Grabity: A Wearable Haptic Interface for Simulating Weight and Grasping in Virtual Reality",
+			"author": "I Choi, H Culbertson, M Miller, A Olwal, S Follmer",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "constrain thumb and index finger, vibrotactile feedback, uni-directional brake provide rigid grasp force, voice coil actuator create force on finger pad, gravity through revolute joint",
+			"tag": ["Haptic", "VR/AR"],
+		},
+		{
+			"title": "Frictio: Passive Kinesthetic Force Feedback for Smart Ring Output",
+			"author": "T Han, Q Han, M Annett, F Anderson, D Huang, X Yang",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "user rotate ring and feel friction force, recognize 6 force profile with 94% accuracy, application",
+			"tag": ["Haptic"],
+		},
+		{
+			"title": "EyeScout: Active Eye Tracking for Position and Movement Independent Gaze Interaction with Large Public Displays",
+			"author": "M Khamis, A Hoesl, A Klimczak, M Reiss, F Alt, A Bulling",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "solve eye tracker restrict sensing space problem, eye tracker mounted on sliding rail, align/move to user's front, body tracking, gaze select target task, evaluate Walk-Then-Interact (2.9s) & Walk-And-Interact (4.7s), application",
+			"tag": ["Eye/Gaze"],
+		},
+		{
+			"title": "Typing on an Invisible Keyboard",
+			"author": "S Zhu, T Luo, X Bi, S Zhai",
+			"conf": "CHI",
+			"year": 2018,
+			"keyword": "adapt spatial model 11.5% faster than default spatial model, 3-day user study, 31.3→37.9 WPM, a little slower than visible keyboard, touch distribution",
+			"tag": ["Text Entry"],
+		},
+		{
+			"title": "A Modular Smartphone for Lending",
+			"author": "T Seyed, X Yang, D Vogel",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "seperate phone into piece and lend to others, owner retain one piece and monitor others, 6 joint model, multi-phone prototype, design & application",
+			"tag": ["Touchscreen"],
+		},
+		{
+			"title": "You as a Puppet: Evaluation of Telepresence User Interface for Puppetry",
+			"author": "M Sakashita, T Minagawa, A Koike, I Suzuki, K Kawahara, Y Ochiai",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "camera/microphone/motor inside puppetry, human wear HMD see/hear perspective of puppetry and react, photoreflector to sense mouth, Kinect track body, interview",
+			"tag": ["VR/AR"],
+		},
+		{
+			"title": "Outside-In: Visualizing Out-of-Sight Regions-of-Interest in a 360 Video Using Spatial Picture-in-Picture Previews",
+			"author": "Y Lin, Y Liao, S Teng, Y Chung, L Chan, B Chen",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "show object out of FOV into picture in FOV, PIP rotate/tilt, compare arrow-based guidance",
+			"tag": ["VR/AR"],
+		},
+		{
+			"title": "CollaVR: Collaborative In-Headset Review for VR Video",
+			"author": "CN Nguyen, S DiVerdi, A Hertzmann, F Liu",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "show other's viewport, mark in video, timeline visualize & control, interview of key design issue",
+			"tag": ["VR/AR"],
+		},
+		{
+			"title": "Panning and Zooming High-Resolution Panoramas in Virtual Reality Devices",
+			"author": "H Chang, M Cohen",
+			"conf": "UIST",
+			"year": 2017,
+			"keyword": "pan & zoom in 360° VR photo, compare different method, Zoom Circle & Alpha Circle is faster",
+			"tag": ["VR/AR", "GUI"],
+		},
+		{
+			"title": "Shot Orientation Controls for Interactive Cinematography with 360° Video",
+			"author": "A Pavel, B Hartmann, M Agrawala",
+			"conf": "UIST",
+			"year": 2017,
+			"keyword": "viewer press button to reorient FOV to see important content, automatic importance detection",
+			"tag": ["VR/AR"],
+		},
+		{
+			"title": "Reflector: Distance-Independent, Private Pointing on a Reflective Screen",
+			"author": "J Lee, S Kim, M Fukumoto, B Lee",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "camera mounted on display track user face/eye/finger to render cursor, remote pointing, mobile T9 pin password",
+			"tag": ["CV/Graphics"],
+		},
+		{
+			"title": "DodecaPen: Accurate 6DoF Tracking of a Passive Stylus",
+			"author": "P Wu, R Wang, K Kin, C Twigg, S Han, M Yang, S Chien",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "track pen (mount dodecahedron with markers) to recover drawing, monocular camera, compare with OptiTrack, sub-millimeter accuracy, application",
+			"tag": ["CV/Graphics", "VR/AR"],
+		},
+		{
+			"title": "FlexStylus: Leveraging Bend Input for Pen Interaction",
+			"author": "N Fellion, T Pietrzak, A Girouard",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "detect deformation/bend of pen, 2 DOF, compare pressure, control menu",
+			"tag": ["Sensing"],
+		},
+		{
+			"title": "Interactive Room Capture on 3D-Aware Mobile Devices",
+			"author": "A Sankar, S Seitz",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "3D CAD room modeling, object recognition, AR user interface, mark surface on object, large online database",
+			"tag": ["CV/Graphics", "VR/AR"],
+		},
+		{
+			"title": "SceneCtrl: Mixed Reality Enhancement via Efficient Scene Editing",
+			"author": "Y Yue, Y Yang, G Ren, W Wang",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "edit real scene sensed by Hololens, reconstruction/understanding, track hand position",
+			"tag": ["VR/AR", "CV/Graphics"],
+		},
+		{
+			"title": "Pyro: Thumb-Tip Gesture Recognition Using Pyroelectric Infrared Sensing",
+			"author": "J Gong, Y Zhang, X Zhou, X Yang",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "thermal infrared signal radiating from finger, smartwatch, 84.9% accuracy on 6 gesture, machine learning, application",
+			"tag": ["Sensing"],
+		},
+		{
+			"title": "FoamSense: Design of Three Dimensional Soft Sensors with Porous Materials",
+			"author": "S Nakamaru, R Nakayama, R Niiyama, Y Kakehi",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "sense deformation of soft object, impregnate porous object with conductive ink, digital print, patterning",
+			"tag": ["Sensing"],
+		},
+		{
+			"title": "AirCode: Unobtrusive Physical Tags for Digital Fabrication",
+			"author": "D Li, A Nair, S Nayar, C Zheng",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "air pocket beneath object surface, only affect scattering light and hard to notice by naked eye, computational imaging method to make tag detectable, aircode design, application",
+			"tag": ["Sensing"],
+		},
+		{
+			"title": "StrutModeling: A Low-Fidelity Construction Kit to Iteratively Model, Test, and Adapt 3D Objects",
+			"author": "D Leen, R Ramakers, K Luyten",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "small stick joint to make 3D model & software real-time show construction, topology tracking by inertial sensor, share voltage",
+			"tag": ["Sensing"],
+		},
+		{
+			"title": "SmartSleeve: Real-time Sensing of Surface and Deformation Gestures on Flexible, Interactive Textiles, using a Hybrid Gesture Detection Pipeline",
+			"author": "P Parzer, A Sharma, A Vogl, J Steimle, A Olwal, M Haller",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "conductive & non-conductive thread, pressure-sensitive layer, gesture design, force image analysis, 92.0% accuracy on 9 gesture",
+			"tag": ["Sensing"],
+		},
+		{
+			"title": "SoundCraft: Enabling Spatial Interactions on Smartwatches using Hand Generated Acoustics",
+			"author": "T Han, K Hasan, K Nakamura, R Gomez, P Irani",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "microphone array (4), sound localization, acoustic signature/gesture classification, >90% accuracy",
+			"tag": ["Sensing"],
+		},
+		{
+			"title": "SensIR: Detecting Hand Gestures with a Wearable Bracelet using Infrared Transmission and Reflection",
+			"author": "J McIntosh, A Marzo, M Fraser",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "pairs of infrared emitters and receivers, measure all possible combination, 93.3% accuracy on 12 gesture",
+			"tag": ["Sensing"],
+		},
+		{
+			"title": "Qoom: An Interactive Omnidirectional Ball Display",
+			"author": "S Miyafuji, T Sato, Z Li, H Koike",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "sphere display can touch/rotate/throw/kick, multi camera/projector, sensor inside, application",
+			"tag": ["CV/Graphics"],
+		},
+		{
+			"title": "Pepper's Cone: An Inexpensive Do-It-Yourself 3D Display",
+			"author": "X Luo, J Lawrence, S Seitz",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "Pepper's Ghost illusion, tablet image reflect into plastic cone to make 3D",
+			"tag": ["CV/Graphics"],
+		},
+		{
+			"title": "iSphere: Self-Luminous Spherical Drone Display",
+			"author": "W Yamada, K Yamada, H Manabe, D Ikeda",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "rotating arcuate multi light-emitting diode (LED) around drone",
+			"tag": ["CV/Graphics"],
+		},
+		{
+			"title": "Data Storage and Interaction using Magnetized Fabric",
+			"author": "J Chan, S Gollakota",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "manipulate polarity of magnetized object and encode image or bit string, swipe smartphone (magnetometer) across object, 90.1% accuracy on 6 gesture using glove",
+			"tag": ["Sensing"],
+		},
+		{
+			"title": "iSoft: A Customizable Soft Sensor with Real-time Continuous Contact and Stretching Sensing",
+			"author": "S Yoon, K Huo, Y Zhang, G Chen, L Paredes, S Chidambaram, K Ramani",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "piezoresistive elastomer, electrical impedance tomography (EIT), contact localization error 9.89mm, application",
+			"tag": ["Sensing"],
+		},
+		{
+			"title": "CanalSense: Face-Related Movement Recognition System based on Sensing Air Pressure in Ear Canals",
+			"author": "T Ando, Y Kubo, B Shizuki, S Takahashi",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "jaw/face/head movement recognition, barometer in earphone, 11 face movement: 87.6% accuracy, 4 open mouth level: 87.5% accuracy",
+			"tag": ["Sensing"],
+		},
+		{
+			"title": "NaviFields: Relevance fields for adaptive VR navigation",
+			"author": "R Murillo, E Gatti, M Segovia, M Obrist, J Masso, D Plasencia",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "scale user's move across non-relevant space (like target-aware cursor), compare constant scaling & natural navigation, drift effect",
+			"tag": ["VR/AR"],
+		},
+		{
+			"title": "Erg-O: Ergonomic Optimization of Immersive Virtual Environments",
+			"author": "R Murillo, S Subramanian, D Plasencia",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "retarget object in more comfortable area, space partition, graph/tree structure location optimize, compare virtual hand / spatial consistent retarget in differeny layout",
+			"tag": ["VR/AR"],
+		},
+		{
+			"title": "Mutual Human Actuation",
+			"author": "L Cheng, S Marwecki, P Baudisch",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "use people to provide force feedback to each other, shared prop, synchronize users' timeline, application",
+			"tag": ["VR/AR", "Haptic"],
+		},
+		{
+			"title": "Visual, Haptic, and Bimodal Perception of Size and Stiffness in Virtual Environments",
+			"author": "W Wu, C Basdogan, M Srinivasan",
+			"conf": "Proceedings of the ASME, Dynamic Systems and Control Division",
+			"year": 1999,
+			"keyword": "study length & stiffness under visual-only/haptic-only/visual-haptic, farther objects perceived to be shorter under visual-only & softer under haptic-only",
+			"tag": ["Haptic"],
+		},
+		{
+			"title": "The Effect of Virtual Surface Stiffness on the Haptic Perception of Detail",
+			"author": "M O'Malley, M Goldfarb",
+			"conf": "IEEE/ASME Transactions on Mechatronics",
+			"year": 2004,
+			"keyword": "stiffness > 400N/m not provide any improvement in performance (90% accuracy) of size identification & size discrimination & ridge detection",
+			"tag": ["Haptic"],
+		},
+		{
+			"title": "Force Constancy and Its Effect on Haptic Perception of Virtual Surfaces",
+			"author": "S Choi, L Walker, H Tan, S Crittenden, R Reifenberger",
+			"conf": "ACM Transactions on Applied Perception",
+			"year": 2005,
+			"keyword": "penetrate surface with different stiffness, perception distort when stiffness nonuniform, force-constancy hypothesis, perceived surface height different can be manipulate",
+			"tag": ["Haptic"],
+		},
+		{
+			"title": "Mid-air Pan-and-Zoom on Wall-sized Displays",
+			"author": "M Nancel, J Wagner, E Pietriga, O Chapuis, W Mackay",
+			"conf": "CHI",
+			"year": 2011,
+			"image": true,
+			"keyword": "remote pointing/navigation, design space: uni-/bi-manual & linear/circular move & guidance degree, bimanual 1D lieanr control is faster",
+			"tag": ["Gesture"],
+		},
+		{
+			"title": "MagTics: Flexible and Thin Form Factor Magnetic Actuators for Dynamic and Wearable Haptic Feedback",
+			"author": "F Pece, J Zarate, V Vechev, N Besse, O Gudozhnik, H Shea, O Hilliges",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "flexible & wearable, magnetically actuated bidirectional tactile pixel, bistable electromag­netic latching, 200mN latching force, application",
+			"tag": ["Haptic"],
+		},
+		{
+			"title": "RetroShape: Leveraging Rear-Surface Shape Displays for 2.5D Interaction on Smartwatches",
+			"author": "D Huang, R Guo, J Gong, J Wang, J Graham, D Yang, X Yang",
+			"conf": "UIST",
+			"year": 2017,
+			"image": true,
+			"keyword": "tactile pixel on back of watch, 4×4 10mm micro servo motor, study on haptic perceive under watch and resolution, tactile pixel can render virtual object with 70%~138% its size, haptic region can be seperate by 4.5mm×16.2mm, application",
+			"tag": ["Haptic"],
+		},
+		{
+			"title": "tactoRing: A Skin-Drag Discrete Display",
+			"author": "S Je, B Rooney, L Chan, A Bianchi",
+			"conf": "CHI",
+			"year": 2017,
+			"image": true,
+			"keyword": "drag small tactor on skin around finger, perception study on recognize eight point (>95% with 4 tator), 94% accuracy on encode information through motion pattern, application",
+			"tag": ["Haptic"],
 		},
 	];
 
@@ -4593,7 +4965,7 @@
 
 
 
-	function render_confs(confs) {
+	/*function render_confs(confs) {
 		var flags = {
 			"A": document.getElementById("conf_A").checked,
 			"B": document.getElementById("conf_B").checked,
@@ -4838,6 +5210,6 @@
 			"hci": true,
 			"journal": true,
 		},
-	];
+	];*/
 
 </script>
