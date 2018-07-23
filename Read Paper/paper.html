@@ -2,7 +2,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title> Read Papaer </title>
+	<title> Read Paper </title>
 	<style>
 	.search {
 		text-align: center;
@@ -185,6 +185,253 @@
 		}
 		render_papers(papers2);
 	}
+
+		/*function render_confs(confs) {
+		var flags = {
+			"A": document.getElementById("conf_A").checked,
+			"B": document.getElementById("conf_B").checked,
+			"C": document.getElementById("conf_C").checked,
+			"H": document.getElementById("conf_HCI").checked,
+			"J": document.getElementById("conf_journal").checked,
+		};
+		var table = document.getElementById("confs");
+		table.innerHTML = "";
+		var tr = document.createElement('tr');
+		tr.innerHTML = '<td>Due</td><td style="width:150px"></td>';
+		table.appendChild(tr);
+		for (var m = 0; m <= 12; m++) {
+			var cnt = 0;
+			for (var i in confs) {
+				var conf = confs[i];
+				if (conf_ifin(m, flags, conf)) cnt++;
+			}
+			if (cnt == 0) continue;
+			var first = true;
+			for (var i in confs) {
+				var conf = confs[i];
+				if (!conf_ifin(m, flags, conf)) continue;
+				var tr = document.createElement('tr');
+				var s = "";
+				if (first) {
+					first = false;
+					s += '<td rowspan="' + cnt + '">' + m + '</td>';
+				}
+				var s2 = "";
+				if (conf["image_black"]) s2 = ' class="conf_bgblack" ';
+				s += '<td ' + s2 + '><a href="' + conf["url"] + '"><img src="' + conf["image"] + '"></img></a></td>';
+				tr.innerHTML = s;
+				table.appendChild(tr);
+			}
+		}
+		var imgs = document.getElementById("confs").getElementsByTagName('img');
+		var maxHeight = 50;
+		var maxWidth = 150;
+		for (var i = 0; i < imgs.length; i++) {
+			var h = imgs[i].height;
+			var w = imgs[i].width;
+			w = w * (maxHeight / h);
+			h = maxHeight;
+			if (w > maxWidth) {
+				h = h * (maxWidth / w);
+				w = maxWidth;
+			}
+	    	imgs[i].height = h;
+	    	imgs[i].width = w;
+		}
+	}
+
+	var confs = [
+		{
+			"month": 2,
+			"title": "MobileHCI",
+			"url": "http://mobilehci.acm.org/2017/",
+			"image": "http://precisionconference.com/~sigchi/style/logoMOBILEHCI17A.png",
+			"image_black": false,
+			"rank": "B",
+			"hci": true,
+			"journal": false,
+		},
+		{
+			"month": 4,
+			"title": "UIST",
+			"url": "https://uist.acm.org/uist2017/",
+			"image": "http://precisionconference.com/~sigchi/style/logouist17a.jpg",
+			"image_black": false,
+			"rank": "B",
+			"hci": true,
+			"journal": false,
+		},
+		{
+			"month": 4,
+			"title": "CSCW",
+			"url": "http://cscw.acm.org/2018/",
+			"image": "http://cscw.acm.org/2018/assets/logo-home-header.svg",
+			"image_black": false,
+			"rank": "A",
+			"hci": true,
+			"journal": false,
+		},
+		{
+			"month": 6,
+			"title": "ISS",
+			"url": "http://iss2017.acm.org/",
+			"image": "http://precisionconference.com/~sigchi/style/logoISS17A.jpg",
+			"image_black": false,
+			"rank": "B",
+			"hci": true,
+			"journal": false,
+		},
+		{
+			"month": 9,
+			"title": "CHI",
+			"url": "https://chi2018.acm.org/",
+			"image": "https://chi2018.acm.org/wp-content/uploads/2017/04/logo-bigengage-blackbg.png",
+			"image_black": true,
+			"rank": "A",
+			"hci": true,
+			"journal": false,
+		},
+		{
+			"month": 10,
+			"title": "IUI",
+			"url": "http://iui.acm.org/2018/",
+			"image": "http://precisionconference.com/~sigchi/style/logoIUI17A.png",
+			"image_black": false,
+			"rank": "B",
+			"hci": true,
+			"journal": false,
+		},
+		{
+			"month": 6,
+			"title": "VRST",
+			"url": "http://vrst.acm.org/vrst2017/",
+			"image": "https://precisionconference.com/~sigchi/style/logovrst17a.png",
+			"image_black": false,
+			"rank": "C",
+			"hci": false,
+			"journal": false,
+		},
+		{
+			"month": 9,
+			"title": "VR",
+			"url": "http://ieeevr.org/2017/",
+			"image": "http://ieeevr.org/2017/assets/themes/ieee_vr_2017/images/palmtree-large-transparent-white-text-maroon-v2.png",
+			"image_black": true,
+			"rank": "A",
+			"hci": false,
+			"journal": false,
+		},
+		{
+			"month": 3,
+			"title": "ISMAR",
+			"url": "http://www.ismar2017.org/",
+			"image": "http://www.ismar2017.org/images/logo.png",
+			"image_black": false,
+			"rank": "C",
+			"hci": false,
+			"journal": false,
+		},
+		{
+			"month": 6,
+			"title": "GROUP",
+			"url": "http://group.acm.org/conferences/group18/",
+			"image": "http://group.acm.org/conferences/group18/images/logo.png",
+			"image_black": false,
+			"rank": "B",
+			"hci": false,
+			"journal": false,
+		},
+		{
+			"month": 12,
+			"title": "GI",
+			"url": "http://graphicsinterface.org/conference/2017",
+			"image": "https://precisionconference.com/~gi/style/logo.png",
+			"image_black": false,
+			"rank": "C",
+			"hci": true,
+			"journal": false,
+		},
+		{
+			"month": 5,
+			"title": "ICMI",
+			"url": "https://icmi.acm.org/2017/",
+			"image": "https://precisionconference.com/~icmi/style/logo.png",
+			"image_black": false,
+			"rank": "C",
+			"hci": true,
+			"journal": false,
+		},
+		{
+			"month": 1,
+			"title": "AVI",
+			"url": "http://avi2016.di.uniba.it/",
+			"image": "http://avi2016.di.uniba.it/images/bari/bari6opaque_mobile.jpg",
+			"image_black": false,
+			"rank": "C",
+			"hci": true,
+			"journal": false,
+		},
+		{
+			"month": 3,
+			"title": "UIC",
+			"url": "http://ieee-smartworld.org/2017/uic/",
+			"image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqkKS4pg2eFFTyUy-9XdseEHFuqcMs3vqQSxRg8CfNewXMsWRg",
+			"image_black": false,
+			"rank": "C",
+			"hci": true,
+			"journal": false,
+		},
+		{
+			"month": 1,
+			"title": "IEEE World Haptic",
+			"url": "http://www.worldhaptics2017.org/",
+			"image": "http://haptics2015.org/images/style/haptics2015-logo.png",
+			"image_black": false,
+			"rank": "C",
+			"hci": true,
+			"journal": false,
+		},
+		{
+			"month": 1,
+			"title": "INTERACT",
+			"url": "https://www.interact2017.org/",
+			"image": "https://www.interact2017.org/img/interact2017_web_logo.png",
+			"image_black": false,
+			"rank": "C",
+			"hci": true,
+			"journal": false,
+		},
+		{
+			"month": 0,
+			"title": "TOCHI",
+			"url": "https://tochi.acm.org/",
+			"image": "http://tochi.acm.org/wp-content/uploads/2014/08/logo97x221.png",
+			"image_black": false,
+			"rank": "A",
+			"hci": true,
+			"journal": true,
+		},
+		{
+			"month": 0,
+			"title": "IJHCS",
+			"url": "https://www.journals.elsevier.com/international-journal-of-human-computer-studies/",
+			"image": "https://www.elsevier.com/__data/cover_img/622846.gif",
+			"image_black": false,
+			"rank": "A",
+			"hci": true,
+			"journal": true,
+		},
+		{
+			"month": 0,
+			"title": "IWMUT",
+			"url": "http://imwut.acm.org/",
+			"image": "http://ubicomp.org/ubicomp2017/images/logo2.png",
+			"image_black": false,
+			"rank": "A",
+			"hci": true,
+			"journal": true,
+		},
+	];*/
 
 	var tag_color = {
 		//"": 				"#808000",
@@ -3299,7 +3546,7 @@
 			"author": "E Tamaki, T Miyak, J Rekimoto",
 			"conf": "AVI",
 			"year": 2010,
-			"keyword": "augment earphone with color camera and laser projector, recognize hand gesture, project on hand",
+			"keyword": "augment earphone with color camera and laser projector, recognize hand gesture, projection on hand",
 			"tag": ["CV/Graphics"],
 		},
 		{
@@ -4986,7 +5233,7 @@
 			"conf": "CHI",
 			"year": 2011,
 			"image": true,
-			"keyword": "remote pointing/navigation, design space: uni-/bi-manual & linear/circular move & guidance degree, bimanual 1D lieanr control is faster",
+			"keyword": "remote pointing/navigation, design space: uni/bimanual & linear/circular move & guidance degree, bimanual 1D lieanr control is faster",
 			"tag": ["Gesture"],
 		},
 		{
@@ -5347,8 +5594,44 @@
 			"conf": "CHI",
 			"year": 2018,
 			"image": true,
-			"keyword": "",
-			"tag": [],
+			"keyword": "40cm<sup>2</sup> area projection smartwatch, depth sensing array for touch tracking, projection calibration",
+			"tag": ["CV/Graphics"],
+		},
+		{
+			"title": "Pointing at a Distance with Everyday Smart Devices",
+			"author": "Shaishav Siddhpuria, Sylvain Malacria, Mathieu Nancel, Edward Lank",
+			"conf": "CHI",
+			"year": 2018,
+			"image": true,
+			"keyword": "pointing technique design space: watch/phone & uni/bimanual & rotation/touchscreen & absolute/relative mapping, compare 7 technique, phone-bimanual-touchscreen-relative is best",
+			"tag": ["Object Operate", "Touchscreen"],
+		},
+		{
+			"title": "Multiray: Multi-Finger Raycasting for Large Displays",
+			"author": "Fabrice Matulic, Daniel Vogel",
+			"conf": "CHI",
+			"year": 2018,
+			"image": true,
+			"keyword": "multi-finger ray-casting design space, marker tracking finger with joint-tip projection, chord gesture, circle/line/rectangle/corner shape, application",
+			"tag": ["Object Operate", "Gesture"],
+		},
+		{
+			"title": "Pointing All Around You: Selection Performance of Mouse and Ray-Cast Pointing in Full-Coverage Displays",
+			"author": "Julian Petford, Miguel A. Nacenta, Carl Gutwin",
+			"conf": "CHI",
+			"year": 2018,
+			"image": true,
+			"keyword": "multi-display environment, compare Perspective Cursor & naive ray-casting, mouse better in seperate task, ray-casting better in combine task",
+			"tag": ["Object Operate"],
+		},
+		{
+			"title": "The Effect of Offset Correction and Cursor on Mid-Air Pointing in Real and Virtual Environments",
+			"author": "Sven Mayer, Valentin Schwind, Robin Schweigert, Niels Henze",
+			"conf": "CHI",
+			"year": 2018,
+			"image": true,
+			"keyword": "compensate systematic offset, study index-finger/head/eye-finger/forearm ray-casting in real & virtual world, good performance with offset compensate when no cursor",
+			"tag": ["Object Operate"],
 		},
 	]; 
 
@@ -5358,254 +5641,5 @@
 	render_papers(papers);
 	//render_confs(confs);
 
-
-
-
-	/*function render_confs(confs) {
-		var flags = {
-			"A": document.getElementById("conf_A").checked,
-			"B": document.getElementById("conf_B").checked,
-			"C": document.getElementById("conf_C").checked,
-			"H": document.getElementById("conf_HCI").checked,
-			"J": document.getElementById("conf_journal").checked,
-		};
-		var table = document.getElementById("confs");
-		table.innerHTML = "";
-		var tr = document.createElement('tr');
-		tr.innerHTML = '<td>Due</td><td style="width:150px"></td>';
-		table.appendChild(tr);
-		for (var m = 0; m <= 12; m++) {
-			var cnt = 0;
-			for (var i in confs) {
-				var conf = confs[i];
-				if (conf_ifin(m, flags, conf)) cnt++;
-			}
-			if (cnt == 0) continue;
-			var first = true;
-			for (var i in confs) {
-				var conf = confs[i];
-				if (!conf_ifin(m, flags, conf)) continue;
-				var tr = document.createElement('tr');
-				var s = "";
-				if (first) {
-					first = false;
-					s += '<td rowspan="' + cnt + '">' + m + '</td>';
-				}
-				var s2 = "";
-				if (conf["image_black"]) s2 = ' class="conf_bgblack" ';
-				s += '<td ' + s2 + '><a href="' + conf["url"] + '"><img src="' + conf["image"] + '"></img></a></td>';
-				tr.innerHTML = s;
-				table.appendChild(tr);
-			}
-		}
-		var imgs = document.getElementById("confs").getElementsByTagName('img');
-		var maxHeight = 50;
-		var maxWidth = 150;
-		for (var i = 0; i < imgs.length; i++) {
-			var h = imgs[i].height;
-			var w = imgs[i].width;
-			w = w * (maxHeight / h);
-			h = maxHeight;
-			if (w > maxWidth) {
-				h = h * (maxWidth / w);
-				w = maxWidth;
-			}
-	    	imgs[i].height = h;
-	    	imgs[i].width = w;
-		}
-	}
-
-	var confs = [
-		{
-			"month": 2,
-			"title": "MobileHCI",
-			"url": "http://mobilehci.acm.org/2017/",
-			"image": "http://precisionconference.com/~sigchi/style/logoMOBILEHCI17A.png",
-			"image_black": false,
-			"rank": "B",
-			"hci": true,
-			"journal": false,
-		},
-		{
-			"month": 4,
-			"title": "UIST",
-			"url": "https://uist.acm.org/uist2017/",
-			"image": "http://precisionconference.com/~sigchi/style/logouist17a.jpg",
-			"image_black": false,
-			"rank": "B",
-			"hci": true,
-			"journal": false,
-		},
-		{
-			"month": 4,
-			"title": "CSCW",
-			"url": "http://cscw.acm.org/2018/",
-			"image": "http://cscw.acm.org/2018/assets/logo-home-header.svg",
-			"image_black": false,
-			"rank": "A",
-			"hci": true,
-			"journal": false,
-		},
-		{
-			"month": 6,
-			"title": "ISS",
-			"url": "http://iss2017.acm.org/",
-			"image": "http://precisionconference.com/~sigchi/style/logoISS17A.jpg",
-			"image_black": false,
-			"rank": "B",
-			"hci": true,
-			"journal": false,
-		},
-		{
-			"month": 9,
-			"title": "CHI",
-			"url": "https://chi2018.acm.org/",
-			"image": "https://chi2018.acm.org/wp-content/uploads/2017/04/logo-bigengage-blackbg.png",
-			"image_black": true,
-			"rank": "A",
-			"hci": true,
-			"journal": false,
-		},
-		{
-			"month": 10,
-			"title": "IUI",
-			"url": "http://iui.acm.org/2018/",
-			"image": "http://precisionconference.com/~sigchi/style/logoIUI17A.png",
-			"image_black": false,
-			"rank": "B",
-			"hci": true,
-			"journal": false,
-		},
-		{
-			"month": 6,
-			"title": "VRST",
-			"url": "http://vrst.acm.org/vrst2017/",
-			"image": "https://precisionconference.com/~sigchi/style/logovrst17a.png",
-			"image_black": false,
-			"rank": "C",
-			"hci": false,
-			"journal": false,
-		},
-		{
-			"month": 9,
-			"title": "VR",
-			"url": "http://ieeevr.org/2017/",
-			"image": "http://ieeevr.org/2017/assets/themes/ieee_vr_2017/images/palmtree-large-transparent-white-text-maroon-v2.png",
-			"image_black": true,
-			"rank": "A",
-			"hci": false,
-			"journal": false,
-		},
-		{
-			"month": 3,
-			"title": "ISMAR",
-			"url": "http://www.ismar2017.org/",
-			"image": "http://www.ismar2017.org/images/logo.png",
-			"image_black": false,
-			"rank": "C",
-			"hci": false,
-			"journal": false,
-		},
-		{
-			"month": 6,
-			"title": "GROUP",
-			"url": "http://group.acm.org/conferences/group18/",
-			"image": "http://group.acm.org/conferences/group18/images/logo.png",
-			"image_black": false,
-			"rank": "B",
-			"hci": false,
-			"journal": false,
-		},
-		{
-			"month": 12,
-			"title": "GI",
-			"url": "http://graphicsinterface.org/conference/2017",
-			"image": "https://precisionconference.com/~gi/style/logo.png",
-			"image_black": false,
-			"rank": "C",
-			"hci": true,
-			"journal": false,
-		},
-		{
-			"month": 5,
-			"title": "ICMI",
-			"url": "https://icmi.acm.org/2017/",
-			"image": "https://precisionconference.com/~icmi/style/logo.png",
-			"image_black": false,
-			"rank": "C",
-			"hci": true,
-			"journal": false,
-		},
-		{
-			"month": 1,
-			"title": "AVI",
-			"url": "http://avi2016.di.uniba.it/",
-			"image": "http://avi2016.di.uniba.it/images/bari/bari6opaque_mobile.jpg",
-			"image_black": false,
-			"rank": "C",
-			"hci": true,
-			"journal": false,
-		},
-		{
-			"month": 3,
-			"title": "UIC",
-			"url": "http://ieee-smartworld.org/2017/uic/",
-			"image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqkKS4pg2eFFTyUy-9XdseEHFuqcMs3vqQSxRg8CfNewXMsWRg",
-			"image_black": false,
-			"rank": "C",
-			"hci": true,
-			"journal": false,
-		},
-		{
-			"month": 1,
-			"title": "IEEE World Haptic",
-			"url": "http://www.worldhaptics2017.org/",
-			"image": "http://haptics2015.org/images/style/haptics2015-logo.png",
-			"image_black": false,
-			"rank": "C",
-			"hci": true,
-			"journal": false,
-		},
-		{
-			"month": 1,
-			"title": "INTERACT",
-			"url": "https://www.interact2017.org/",
-			"image": "https://www.interact2017.org/img/interact2017_web_logo.png",
-			"image_black": false,
-			"rank": "C",
-			"hci": true,
-			"journal": false,
-		},
-		{
-			"month": 0,
-			"title": "TOCHI",
-			"url": "https://tochi.acm.org/",
-			"image": "http://tochi.acm.org/wp-content/uploads/2014/08/logo97x221.png",
-			"image_black": false,
-			"rank": "A",
-			"hci": true,
-			"journal": true,
-		},
-		{
-			"month": 0,
-			"title": "IJHCS",
-			"url": "https://www.journals.elsevier.com/international-journal-of-human-computer-studies/",
-			"image": "https://www.elsevier.com/__data/cover_img/622846.gif",
-			"image_black": false,
-			"rank": "A",
-			"hci": true,
-			"journal": true,
-		},
-		{
-			"month": 0,
-			"title": "IWMUT",
-			"url": "http://imwut.acm.org/",
-			"image": "http://ubicomp.org/ubicomp2017/images/logo2.png",
-			"image_black": false,
-			"rank": "A",
-			"hci": true,
-			"journal": true,
-		},
-	];*/
 
 </script>
