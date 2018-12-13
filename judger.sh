@@ -1,4 +1,4 @@
-probs=("complex" "hugeinteger" "rational")
+probs=("date" "savingsaccount" "tictactoe")
 
 
 for file in user/*
@@ -11,7 +11,10 @@ do
 		do
 			cp ../../../test/$prob/Test.java $prob/Test.java 2> tmp.txt
 			# javac $prob/*.java 2> tmp.txt
+			
+			# javac -encoding UTF-8 $prob/*.java
 			javac $prob/*.java
+			
 			java $prob.Test
 			# java $prob.Test ../../../test/$prob/input.txt > output.txt 2> tmp.txt
 			# diff output.txt ../../../test/$prob/output.txt > /dev/null
