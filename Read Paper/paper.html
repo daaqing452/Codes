@@ -4,6 +4,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title> Read Paper </title>
 	<style>
+	@font-face {
+		font-family: 'Saira Extra Condensed';
+		src: url('./etc/SairaExtraCondensed-Regular.ttf') format('truetype');
+	}
 	.search {
 		text-align: center;
 		margin-bottom: 10px;
@@ -14,27 +18,46 @@
 	}
 	.item {
 		width: 1200px;
-		padding-top: 20px;
-		padding-bottom: 20px;
+		padding-top: 15px;
+		padding-bottom: 15px;
 	}
 	.index {
-		font-size: 20px;
+		font-family: 'Saira Extra Condensed';
+		font-size: 30px;
 		font-weight: bold;
 		padding-right: 10px;
 	}
 	.title {
+		font-size: 16px;
 		font-weight: bold;
 		display: block;
 		text-decoration: none;
+		padding-bottom: 5px;
 	}
 	.author {
+		font-family: "Arial";
 		font-size: 10px;
 		display: block;
 	}
 	.source {
+		font-family: "Arial";
 		font-size: 10px;
 		color: #777777;
-		margin-bottom: 5px;
+		padding-bottom: 0px;
+	}
+	.keyword {
+		font-size: 14px;
+	}
+	.tag {
+		font-family: 'Saira Extra Condensed';
+		font-size: 16px;
+		color: #ffffff;
+		/*float: right;*/
+		background-color: #000000;
+		padding: 0px 4px 0px 4px;
+		margin-right: 4px;
+		/*width: 80px;*/
+		text-align: center;
 	}
 
 	.confs_div {
@@ -57,16 +80,6 @@
 	.conf_bgblack {
 		background: #000000;
 	}
-	.tag {
-		font-size: 10px;
-		color: #ffffff;
-		/*float: right;*/
-		background-color: #000000;
-		padding: 1px 2px 1px 2px;
-		margin-right: 4px;
-		/*width: 80px;*/
-		text-align: center;
-	}
 	a:visited {color: #000000}
 	a:link {color: #000000}
 	a:hover {color: #0000FF}
@@ -74,7 +87,7 @@
 </head>
 
 <body>
-<h1> Read Paper </h1>
+<h1 style="font-family:'Saira Extra Condensed'; font-size:40px"> Read Paper </h1>
 <!--<div class="confs_div" style="display:none">
 	<input type="checkbox" id="conf_A" checked="checked" onchange="conf_onchange()"> A </input> &nbsp; &nbsp; &nbsp;
 	<input type="checkbox" id="conf_B" checked="checked" onchange="conf_onchange()"> B </input> &nbsp; &nbsp; &nbsp;
@@ -85,7 +98,7 @@
 	<table rules="none" class="confs" id="confs"> </table>
 </div>-->
 <div id="tags"></div><br/><br/>
-<select id="conf_select">
+<select id="conf_select" style="height:21px">
 	<option value='[]'></option>
 	<option value='["CHI"]'>CHI</option>
 	<option value='["UIST"]'>UIST</option>
@@ -94,7 +107,7 @@
 	<option value='["MobileHCI"]'>MobileHCI</option>
 </select>
 <input id="conf_year_start" style="width:30px" value="1900" type="text"/>-<input id="conf_year_end" style="width:30px" value="2018" type="text"/>
-<select id="author_select"></select>
+<select id="author_select" style="height:21px"></select>
 <button onclick="onclick_conf_select()">Search</button><br/><br/>
 <table rules="rows" class="papers" id="papers"> </table>
 </body>
@@ -455,18 +468,18 @@
 
 	var tag_color = {
 		//"": 				"#808000",
-		"CV/Graphics": 		"#ff80aa",
 		"Eye/Gaze": 		"#800000",
-		"Gesture": 			"#008000",
-		"GUI": 				"#8080aa",
-		"Haptic": 			"#80bb00",
-		"Object Operate": 	"#ffaa00",
-		"Sensing": 			"#440080",
-		"Survey": 			"#808080",
-		"Text Entry": 		"#004480",
 		"Theory": 			"#ff4040",
+		"Object Operate": 	"#dd8800",
+		"Haptic": 			"#889900",
+		"Gesture": 			"#008000",
+		"VR/AR": 			"#00aaaa",
 		"Touchscreen": 		"#0066ff",
-		"VR/AR": 			"#00dd88",
+		"Text Entry": 		"#004480",
+		"GUI": 				"#6060cc",
+		"Sensing": 			"#440080",
+		"CV/Graphics": 		"#ee6699",
+		"Survey": 			"#606060",
 	};
 
 	var papers = [
