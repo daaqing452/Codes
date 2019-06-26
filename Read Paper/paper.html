@@ -12,6 +12,15 @@
 		font-family: "Mircosoft Yahei";
 		src: url('./etc/msyhbd.ttc') format('truetype');
 	}
+	.conf_font{
+		text-align: center;
+		font-family: "Arial";
+		float:right;
+	}
+	.conf_image{
+		margin-left:5px;
+		height:20px;
+	}
 	.search {
 		text-align: center;
 		margin-bottom: 10px;
@@ -92,29 +101,56 @@
 </head>
 
 <body>
-<h1 style="font-family:'Saira Extra Condensed'; font-size:40px"> Read Paper </h1>
-<!--<div class="confs_div" style="display:none">
-	<input type="checkbox" id="conf_A" checked="checked" onchange="conf_onchange()"> A </input> &nbsp; &nbsp; &nbsp;
-	<input type="checkbox" id="conf_B" checked="checked" onchange="conf_onchange()"> B </input> &nbsp; &nbsp; &nbsp;
-	<input type="checkbox" id="conf_C" onchange="conf_onchange()"> C </input>
-	<br/>
-	<input type="checkbox" id="conf_HCI" checked="checked" onchange="conf_onchange()"> HCI </input> &nbsp; &nbsp; &nbsp;
-	<input type="checkbox" id="conf_journal" onchange="conf_onchange()"> Journal </input>
-	<table rules="none" class="confs" id="confs"> </table>
-</div>-->
-<div id="tags"></div><br/><br/>
-<select id="conf_select" style="height:21px">
-	<option value='[]'></option>
-	<option value='["CHI"]'>CHI</option>
-	<option value='["UIST"]'>UIST</option>
-	<option value='["CHI", "UIST"]'>CHI/UIST</option>
-	<option value='["ISS"]'>ISS</option>
-	<option value='["MobileHCI"]'>MobileHCI</option>
-</select>
-<input id="conf_year_start" style="width:30px" value="1900" type="text"/>-<input id="conf_year_end" style="width:30px" value="2018" type="text"/>
-<select id="author_select" style="height:21px"></select>
-<button onclick="onclick_conf_select()">Search</button><br/><br/>
-<table rules="rows" class="papers" id="papers"> </table>
+<div style="float:left">
+	<h1 style="font-family:'Saira Extra Condensed'; font-size:40px"> Read Paper </h1>
+	<!--<div class="confs_div" style="display:none">
+		<input type="checkbox" id="conf_A" checked="checked" onchange="conf_onchange()"> A </input> &nbsp; &nbsp; &nbsp;
+		<input type="checkbox" id="conf_B" checked="checked" onchange="conf_onchange()"> B </input> &nbsp; &nbsp; &nbsp;
+		<input type="checkbox" id="conf_C" onchange="conf_onchange()"> C </input>
+		<br/>
+		<input type="checkbox" id="conf_HCI" checked="checked" onchange="conf_onchange()"> HCI </input> &nbsp; &nbsp; &nbsp;
+		<input type="checkbox" id="conf_journal" onchange="conf_onchange()"> Journal </input>
+		<table rules="none" class="confs" id="confs"> </table>
+	</div>-->
+	<div id="tags"></div><br/><br/>
+	<select id="conf_select" style="height:21px">
+		<option value='[]'></option>
+		<option value='["CHI"]'>CHI</option>
+		<option value='["UIST"]'>UIST</option>
+		<option value='["CHI", "UIST"]'>CHI/UIST</option>
+		<option value='["ISS"]'>ISS</option>
+		<option value='["MobileHCI"]'>MobileHCI</option>
+	</select>
+	<input id="conf_year_start" style="width:30px" value="1900" type="text"/>-<input id="conf_year_end" style="width:30px" value="2018" type="text"/>
+	<select id="author_select" style="height:21px"></select>
+	<button onclick="onclick_conf_select()">Search</button><br/><br/>
+</div>
+<div class="conf_font">
+	<table>
+		<tr>
+			<td>Feb.11</td><td><img class="conf_image" src="image_conf/mobilehci2019.png"/></td><td style="width:30px">
+			<td>Jul.5</td><td><img class="conf_image" src="image_conf/iss2019.png"/></td>
+		</tr>
+		<tr>
+			<td>Feb.15</td><td><img class="conf_image" src="image_conf/ubicomp2019.jpg"/></td><td>
+			<td>Sep.20</td><td><img class="conf_image" src="image_conf/chi2020.png"/></td>
+		</tr>
+		<tr>
+			<td>Apr.4</td><td><img class="conf_image" src="image_conf/cscw2019.png"/></td><td>
+			<td>Oct.1</td><td><img class="conf_image" src="image_conf/iui2020.png"/></td>
+		</tr>
+		<tr>
+			<td>Apr.5</td><td><img class="conf_image" src="image_conf/uist2019.png"/></td><td>
+			<td>Nov.22</td><td><img class="conf_image" src="image_conf/ieeevr2020.png"/>
+		</tr>
+		<tr>
+			<td>May.15</td><td><img class="conf_image" src="image_conf/ubicomp2019.jpg"/></td><td>
+		</tr>
+	</table>
+</div>
+<div style="float:left">
+	<table rules="rows" class="papers" id="papers"> </table>
+</div>
 </body>
 </html>
 
@@ -4500,13 +4536,31 @@
 			"tag": ["Touchscreen", "Gesture"],
 		},
 		{
+			"title": "Strategies for Accelerating On-line Learning of Hotkeys",
+			"author": "Tovi Grossman, Pierre Dragicevic, Ravin Balakrishnan",
+			"conf": "CHI",
+			"year": 2007,
+			"image": true,
+			"keyword": "hotkey memory/learning can be accelerate by little feedback modify, manipulate menu visibility/persistence and cost/difficulty, compare traditional & fade-out & menu replacement & audio & delay & disabled",
+			"tag": ["GUI"],
+		},
+		{
+			"title": "Using Strokes as Command Shortcuts: Cognitive Benefits and Toolkit Support",
+			"author": "Caroline Appert, Shumin Zhai",
+			"conf": "CHI",
+			"year": 2009,
+			"image": true,
+			"keyword": "compare keyboard shortcut, 14 shortcut, ≈performance with enough practice, stroke have learn/recall advantage, guideline, toolkit",
+			"tag": ["Gesture", "GUI"],
+		},
+		{
 			"title": "Using Rhythmic Patterns as an Input Method",
 			"author": "Emilien Ghomi, Guillaume Faure, Stéphane Huot, Olivier Chapuis, Michel Beaudouin-Lafon",
 			"conf": "CHI",
 			"year": 2012,
 			"image": true,
 			"keyword": "tap pattern on touchpad, impulse/short-tap/long-tap/break counted in beats, audio/visual/both feeedback, shorter taps > longer taps without vocabulary, all taps recognized well with vocabulary, rhythm ≈ hotkey in memory",
-			"tag": ["Gesture", "Theory"],
+			"tag": ["Gesture"],
 		},
 		{
 			"title": "Eye Tracking for Everyone",
@@ -5255,15 +5309,6 @@
 			"tag": ["Gesture", "Touchscreen"],
 		},
 		{
-			"title": "Strategies for Accelerating On-line Learning of Hotkeys",
-			"author": "Tovi Grossman, Pierre Dragicevic, Ravin Balakrishnan",
-			"conf": "CHI",
-			"year": 2007,
-			"image": true,
-			"keyword": "hotkey memory/learning can be accelerate by little feedback modify, manipulate menu visibility/persistence and cost/difficulty, compare traditional & fade-out & menu replacement & audio & delay & disabled",
-			"tag": ["GUI"],
-		},
-		{
 			"title": "Motion-Pointing: Target Selection using Elliptical Motions",
 			"author": "Jean-Daniel Fekete, Niklas Elmqvist, Yves Guiard",
 			"conf": "CHI",
@@ -5977,14 +6022,6 @@
 			"year": 2008,
 			"keyword": "user perception & control multi-touch interaction using 1-2 hand, bimanual is compatible with 2-touch interaction, other result ...",
 			"tag": ["Gesture", "Touchscreen"],
-		},
-		{
-			"title": "Using Strokes as Command Shortcuts: Cognitive Benefits and Toolkit Support",
-			"author": "Caroline Appert, Shumin Zhai",
-			"conf": "CHI",
-			"year": 2009,
-			"keyword": "performance of keyboard or stroke shortcut is similar, stroke shortcut is better in recall, toolkit",
-			"tag": ["Gesture"],
 		},
 		{
 			"title": "Finger-Count & Radial-Stroke Shortcuts: Two Techniques for Augmenting Linear Menus on Multi-Touch Surfaces",
@@ -7901,6 +7938,15 @@
 			"image": true,
 			"keyword": "generate projection periphery effect of display based on context, use center image + full image to train periphery, interview",
 			"tag": ["CV/Graphics"],
+		},
+		{
+			"title": "Substituting Motion Effects with Vibrotactile Effects for 4D Experiences",
+			"author": "Jongman Seo, Sunung Mun, Jaebong Lee, Seungmoon Choi",
+			"conf": "CHI",
+			"year": 2018,
+			"image": true,
+			"keyword": "grid actuator display on chair, render algorithm & user study",
+			"tag": ["Haptic", "VR/AR"],
 		},
 	]; 
 
