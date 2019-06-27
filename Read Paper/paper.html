@@ -12,13 +12,22 @@
 		font-family: "Mircosoft Yahei";
 		src: url('./etc/msyhbd.ttc') format('truetype');
 	}
-	.conf_font{
-		text-align: center;
+	.conf_font {
+		text-align: left;
 		font-family: "Arial";
-		float:right;
+		position: fixed;
+		z-index: 10;
+		top: 40px;
+		right: 10px;
+		background-color: #FFF;
+		border: 1px solid #000;
+		padding: 2px 5px 2px 5px;
 	}
-	.conf_image{
-		margin-left:5px;
+	.conf_month {
+		text-align: right;
+	}
+	.conf_image {
+		margin-left:20px;
 		height:20px;
 	}
 	.search {
@@ -125,26 +134,23 @@
 	<select id="author_select" style="height:21px"></select>
 	<button onclick="onclick_conf_select()">Search</button><br/><br/>
 </div>
-<div class="conf_font">
+<div style="float:right">
+	<button onclick="show_conference()">Show Conference</button>
+</div>
+<div id="conf_table" class="conf_font" style="display:none">
 	<table>
-		<tr>
-			<td>Feb.11</td><td><img class="conf_image" src="image_conf/mobilehci2019.png"/></td><td style="width:30px">
-			<td>Jul.5</td><td><img class="conf_image" src="image_conf/iss2019.png"/></td>
-		</tr>
-		<tr>
-			<td>Feb.15</td><td><img class="conf_image" src="image_conf/ubicomp2019.jpg"/></td><td>
-			<td>Sep.20</td><td><img class="conf_image" src="image_conf/chi2020.png"/></td>
-		</tr>
-		<tr>
-			<td>Apr.4</td><td><img class="conf_image" src="image_conf/cscw2019.png"/></td><td>
-			<td>Oct.1</td><td><img class="conf_image" src="image_conf/iui2020.png"/></td>
-		</tr>
-		<tr>
-			<td>Apr.5</td><td><img class="conf_image" src="image_conf/uist2019.png"/></td><td>
-			<td>Nov.22</td><td><img class="conf_image" src="image_conf/ieeevr2020.png"/>
-		</tr>
-		<tr>
-			<td>May.15</td><td><img class="conf_image" src="image_conf/ubicomp2019.jpg"/></td><td>
+		<tr><td class="conf_month">2.</td><td>11</td><td><img class="conf_image" src="image_conf/mobilehci2019.png"/></td></tr>
+		<tr><td class="conf_month">2.</td><td>15</td><td><img class="conf_image" src="image_conf/ubicomp2019.jpg"/></td></tr>
+		<tr><td class="conf_month">4.</td><td>4</td><td><img class="conf_image" src="image_conf/cscw2019.png"/></td></tr>
+		<tr><td class="conf_month">4.</td><td>5</td><td><img class="conf_image" src="image_conf/uist2019.png"/></td></tr>
+		<tr><td class="conf_month">5.</td><td>15</td><td><img class="conf_image" src="image_conf/ubicomp2019.jpg"/></td></tr>
+		<tr><td class="conf_month">7.</td><td>5</td><td><img class="conf_image" src="image_conf/iss2019.png"/></td></tr>
+		<tr><td class="conf_month">8.</td><td>15</td><td><img class="conf_image" src="image_conf/ubicomp2019.jpg"/></td></tr>
+		<tr><td class="conf_month">9.</td><td>20</td><td><img class="conf_image" src="image_conf/chi2020.png"/></td></tr>
+		<tr><td class="conf_month">10.</td><td>1</td><td><img class="conf_image" src="image_conf/iui2020.png"/></td></tr>
+		<tr><td class="conf_month">10.</td><td>14</td><td><img class="conf_image" src="image_conf/www2020.png"/></td><td></tr>
+		<tr><td class="conf_month">11.</td><td>15</td><td><img class="conf_image" src="image_conf/ubicomp2019.jpg"/></td><td></tr>
+		<tr><td class="conf_month">11.</td><td>22</td><td><img class="conf_image" src="image_conf/ieeevr2020.png"/>
 		</tr>
 	</table>
 </div>
@@ -155,6 +161,17 @@
 </html>
 
 <script>
+	var show_conference_status = false;
+	function show_conference() {
+		if (show_conference_status) {
+			document.getElementById("conf_table").style.display="none";
+			show_conference_status = false;
+		} else {
+			document.getElementById("conf_table").style.display="";
+			show_conference_status = true;
+		}
+	}
+
 	function conf_onchange() {
 		render_confs(confs);
 	}
